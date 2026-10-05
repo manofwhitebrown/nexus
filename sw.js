@@ -1,5 +1,5 @@
 // Bump VERSION whenever you change index.html so phones pick up the update.
-const VERSION='nexus-v2-3';
+const VERSION='nexus-v3-1';
 const FILES=['./','index.html','manifest.webmanifest','icons/icon-192.png','icons/icon-512.png','privacy.html','terms.html'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(VERSION).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==VERSION).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
