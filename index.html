@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nexus</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#2340D8">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Nexus">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+
+<meta name="description" content="Nexus: tasks, notes, links and projects, connected. Your data stays on this device.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#ECEFF3;--s:#F6F8FA;--ink:#101B2B;--mu:#566274;--ln:#CBD2DB;--ac:#2340D8;--on:#F5F7FF;--dg:#B42318;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1622;--s:#16202F;--ink:#E8EDF5;--mu:#95A2B7;--ln:#273348;--ac:#7C99FF;--on:#0A1226;--dg:#FF8A7A}}
+:root[data-theme="dark"]{--bg:#0E1622;--s:#16202F;--ink:#E8EDF5;--mu:#95A2B7;--ln:#273348;--ac:#7C99FF;--on:#0A1226;--dg:#FF8A7A}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*{box-sizing:border-box}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:17px/1.5 "Familjen Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif;overflow-wrap:anywhere}
+button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}
+:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+header,main{max-width:560px;margin:0 auto;padding-left:20px;padding-right:20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-top:10px;padding-bottom:6px}
+main{padding-bottom:120px}
+h1{font-size:32px;line-height:1.1;letter-spacing:-.03em;margin:18px 0 2px;font-weight:600}
+h2{font-size:19px;margin:30px 0 4px;font-weight:600}
+small,.mu{color:var(--mu)}small{display:block;font-size:14.5px}
+input,select,textarea{width:100%;min-height:48px;padding:10px 14px;border:1.5px solid var(--ln);border-radius:10px;background:var(--s)}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--ac)}
+textarea{resize:none;display:block}
+.now{margin-top:16px;padding:22px;border-radius:22px;background:var(--ac);color:var(--on)}
+.now p{margin:0}.now .t{font-size:34px;line-height:1.06;font-weight:600;letter-spacing:-.03em;margin:8px 0}
+.now .t.s{font-size:22px}.row2{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.btn{min-height:48px;padding:0 18px;border:1.5px solid var(--ink);border-radius:12px;background:none;font-weight:600}
+.btn.p{background:var(--ac);border-color:var(--ac);color:var(--on)}.btn.d{border-color:var(--dg);color:var(--dg)}
+.now .btn{border-color:var(--on);color:var(--on)}.now .btn.l{background:var(--on);color:var(--ac)}
+ul{list-style:none;margin:0;padding:0}.row{display:flex;gap:8px;border-bottom:1px solid var(--ln)}
+.rm{flex:1;min-width:0;text-align:left;background:none;border:0;padding:12px 0}.rm b{display:block;line-height:1.3}
+.dn{color:var(--mu);text-decoration:line-through}.late{color:var(--dg)}
+.ck{flex:none;width:44px;height:44px;margin:3px 0 0 -10px;border:0;background:none;display:grid;place-items:center}
+.ck i{width:24px;height:24px;border:2px solid var(--mu);border-radius:7px;display:block}
+.ck[aria-checked=true] i{background:var(--ac);border-color:var(--ac)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.chip{min-height:44px;padding:0 16px;border:1.5px solid var(--ln);border-radius:99px;background:none}
+.chip[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:var(--bg);font-weight:600}
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom,0px);z-index:8}
+nav div{display:grid;grid-template-columns:repeat(5,1fr);max-width:560px;margin:0 auto;height:60px}
+nav button{border:0;background:none;color:var(--mu);font-size:14px;font-weight:500;padding:0;white-space:nowrap}
+nav button[aria-current=page]{color:var(--ink);font-weight:700;box-shadow:inset 0 3px 0 var(--ac)}
+.fab{position:fixed;right:18px;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:9;min-height:52px;padding:0 22px;border:0;border-radius:16px;background:var(--ac);color:var(--on);font-weight:700}
+dialog{width:100%;max-width:560px;max-height:92dvh;margin:auto auto 0;border:0;border-radius:22px 22px 0 0;background:var(--s);color:var(--ink);padding:18px 20px calc(20px + env(safe-area-inset-bottom,0px))}
+dialog::backdrop{background:#0008}dialog label{display:block;margin-top:12px}dialog label>span{display:block;color:var(--mu);font-size:15px;margin-bottom:4px}
+dialog input,dialog select,dialog textarea{background:var(--bg)}dialog input[type=checkbox]{width:24px;min-height:24px;display:inline-block;vertical-align:middle;margin-right:10px}
+#toast{position:fixed;left:16px;right:16px;bottom:calc(76px + env(safe-area-inset-bottom,0px));max-width:520px;margin:0 auto;z-index:20;background:var(--ink);color:var(--bg);border-radius:12px;padding:12px 16px;display:none;justify-content:space-between;gap:12px}
+#toast button{background:none;border:0;color:inherit;font-weight:700;text-decoration:underline}
+#fx{position:fixed;inset:0;z-index:30;background:var(--ac);color:var(--on);display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;padding-top:calc(24px + env(safe-area-inset-top,0px));padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))}
+#fx .tm{font-size:84px;font-weight:600;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+#fx .btn{border-color:var(--on);color:var(--on)}#fx .btn.l{background:var(--on);color:var(--ac)}
+.sk{background:var(--ln);border-radius:10px;opacity:.7}
+.card{display:block;width:100%;text-align:left;padding:14px 16px;border:1.5px solid var(--ln);border-radius:12px;background:var(--s);margin-top:8px}
+@media(max-width:360px){nav button{font-size:13px}}
+a{color:var(--ac)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<header><input id="q" type="search" enterkeyhint="go" autocomplete="off" maxlength="300" aria-label="Command bar" placeholder="Find or type: task call Sam"><small id="qh"></small></header>
+<main id="m" tabindex="-1"><div class="sk" style="width:40%;height:28px;margin-top:22px"></div><div class="sk" style="height:200px;margin-top:24px;border-radius:22px"></div><div class="sk" style="height:20px;margin-top:22px;width:90%"></div><noscript><p>Nexus needs JavaScript to run.</p></noscript></main>
+<button class="fab" data-a="cap">Capture</button>
+<nav aria-label="Main"><div id="nv"></div></nav>
+<dialog id="dlg"></dialog><div id="toast" role="status"></div><div id="fx" role="dialog" aria-label="Focus mode"></div>
+<script>
+const $=s=>document.querySelector(s),E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const K='nexus.v2';let D={items:[],projects:[],log:[]},S={tab:'home',skip:0,pj:null,col:null,type:'auto'};
+try{const r=JSON.parse(localStorage.getItem(K)||'{}');if(r&&typeof r==='object')D={items:Array.isArray(r.items)?r.items:[],projects:Array.isArray(r.projects)?r.projects:[],log:Array.isArray(r.log)?r.log:[]}}catch(e){}
+const TH='nexus.theme',th=()=>{try{return localStorage.getItem(TH)||'system'}catch(e){return'system'}};
+const applyTh=()=>{const t=th();t==='system'?document.documentElement.removeAttribute('data-theme'):document.documentElement.setAttribute('data-theme',t)};applyTh();
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(D));return 1}catch(e){toast('Storage is full or blocked. Export a backup in Settings.');return 0}};
+const now=()=>new Date().toISOString(),uid=()=>Math.random().toString(36).slice(2,9)+Date.now().toString(36);
+const dk=(d=new Date())=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const addD=n=>{const d=new Date();d.setDate(d.getDate()+n);return dk(d)};
+const ago=iso=>{const m=Math.round((Date.now()-new Date(iso))/6e4);if(m<1)return'just now';if(m<60)return m+' min ago';const h=Math.floor(m/60);if(h<24)return h+' h ago';const d=Math.floor(h/24);return d<7?d+' d ago':new Date(iso).toLocaleDateString(undefined,{day:'numeric',month:'short'})};
+const dom=u=>{try{return new URL(u).hostname.replace(/^www\./,'')}catch(e){return''}};
+const safeUrl=u=>{u=String(u||'').trim();if(!u||u.length>2000)return'';try{const x=new URL(/^https?:\/\//i.test(u)?u:'https://'+u);if(!/^https?:$/.test(x.protocol)||x.username||x.password||!x.hostname.includes('.'))return'';return x.href}catch(e){return''}};
+const pl=(n,w)=>n+' '+w+(n===1?'':'s');
+const pname=i=>(D.projects.find(p=>p.id===i)||{}).name||'';
+const get=i=>D.items.find(x=>x.id===i);
+const logA=(k,it)=>{D.log.push({t:now(),k,id:it.id,ti:String(it.title||'Untitled').slice(0,80),ty:it.type});if(D.log.length>400)D.log.splice(0,D.log.length-400)};
+function toast(msg,act,fn){const t=$('#toast');t.innerHTML='<span>'+E(msg)+'</span>'+(act?'<button>'+E(act)+'</button>':'');t.style.display='flex';if(act)t.querySelector('button').onclick=()=>{fn();t.style.display='none'};clearTimeout(toast.h);toast.h=setTimeout(()=>t.style.display='none',5000)}
+function parse(t,force){t=String(t||'').trim().slice(0,5000);if(!t)return null;const o=t;let url='';const m=t.match(/\b(?:https?:\/\/|www\.)[^\s]+/i);
+if(m){const u=safeUrl(m[0].replace(/[.,;:!?)]+$/,''));if(u){url=u;t=t.replace(m[0],' ')}}
+const tags=[];t=t.replace(/(^|\s)#([\w-]{1,30})/g,(a,s,x)=>{tags.push(x.toLowerCase());return s});
+let project=null;t=t.replace(/(^|\s)@([\w-]{1,60})/g,(a,s,n)=>{const p=D.projects.find(p=>p.name.toLowerCase().replace(/\s/g,'').startsWith(n.toLowerCase()));if(p&&!project){project=p.id;return s}return a});
+if(!project)for(const p of D.projects)if(p.name.length>2&&t.toLowerCase().includes(p.name.toLowerCase())){project=p.id;break}
+t=t.replace(/\s+/g,' ').trim();const tp=/^(todo|task|remind me to|remind me|reminder)\b[:\s-]*/i,ip=/^idea\b[:\s-]*/i,np=/^note\b[:\s-]*/i;
+const type=force||(tp.test(t)?'task':ip.test(t)?'idea':np.test(t)?'note':url&&t.length<200?'link':/\b(i'll|i will|i need to|i have to|need to)\b/i.test(t)&&t.length<160?'task':'note');
+t=t.replace(tp,'').replace(ip,'').replace(np,'').trim();
+const promise=type==='task'&&/\b(i'll|i will|remind me|promised?|get back to)\b/i.test(o);
+const due=type==='task'?(/\btomorrow\b/i.test(t)?addD(1):/\b(today|tonight)\b/i.test(t)?dk():null):null;
+let title=t.slice(0,120),body=t.length>120?t.slice(120):'';if(!title&&url)title=dom(url);if(!title&&tags.length)title='#'+tags[0];
+return{type,title,body,url,tags:[...new Set(tags)].slice(0,10),project,due,promise}}
+function addItem(p){if(!p||(!p.title&&!p.url))return null;if(D.items.length>=5000){toast('Limit of 5,000 items reached.');return null}
+const it={id:uid(),type:p.type,title:p.title,body:p.body||'',url:p.url||'',project:p.project||null,tags:p.tags||[],done:false,doneAt:null,due:p.due||null,promise:!!p.promise,created:now(),updated:now()};
+D.items.push(it);logA('created',it);save();return it}
+function upd(i,patch){const it=get(i);if(!it)return;const was=it.done;Object.assign(it,patch,{updated:now()});if(patch.done===true&&!was){it.doneAt=now();logA('done',it)}else if(patch.done===false)it.doneAt=null;else logA('updated',it);
+const l=D.log;if(l.length>1&&l[l.length-1].k==='updated'&&l[l.length-2].k==='updated'&&l[l.length-2].id===i)l.splice(l.length-2,1);save()}
+const dueL=d=>!d?'':d===dk()?'due today':d===addD(1)?'due tomorrow':d<dk()?'overdue':'due '+new Date(d+'T00:00').toLocaleDateString(undefined,{day:'numeric',month:'short'});
+const meta=i=>[pname(i.project),i.type==='link'?dom(i.url):'',i.type==='task'&&!i.done?dueL(i.due):'',i.promise&&!i.done?'promised':'',i.type!=='task'?ago(i.updated):''].filter(Boolean).join(', ');
+const row=i=>`<li class="row">${i.type==='task'?`<button class="ck" role="checkbox" aria-checked="${!!i.done}" aria-label="Mark done: ${E(i.title)}" data-a="done" data-i="${i.id}"><i></i></button>`:''}<button class="rm" data-a="open" data-i="${i.id}"><b class="${i.done?'dn':''}">${E(i.title||dom(i.url)||'Untitled')}</b><small class="${i.due&&i.due<dk()&&!i.done?'late':''}">${E(meta(i))}</small></button></li>`;
+const list=a=>a.length?`<ul>${a.map(row).join('')}</ul>`:'';
+const sec=(t,h)=>h?`<h2>${E(t)}</h2>${h}`:'';
+const words=s=>new Set((String(s).toLowerCase().match(/[a-z0-9\u0900-\u0c7f]{4,}/g)||[]));
+function rel(a,b){let s=0,r='';if(a.project&&a.project===b.project){s+=4;r='Same project: '+pname(a.project)}const t=a.tags.filter(x=>b.tags.includes(x));if(t.length){s+=3*t.length;r=r||'Shares #'+t[0]}const wa=words(a.title),w=[...words(b.title)].filter(x=>wa.has(x));if(w.length){s+=Math.min(3,w.length);r=r||'Both mention "'+w[0]+'"'}return{s,r}}
+const related=(it)=>D.items.filter(o=>o.id!==it.id).map(o=>({o,...rel(it,o)})).filter(x=>x.s>=2).sort((a,b)=>b.s-a.s).slice(0,5);
+const COL={'Unfinished':i=>i.type==='task'&&!i.done,'Overdue':i=>i.type==='task'&&!i.done&&i.due&&i.due<dk(),'Saved for later':i=>i.type==='link','Ideas':i=>i.type==='idea','This week':i=>Date.now()-new Date(i.updated)<6048e5,'Untouched for 30 days':i=>!i.done&&Date.now()-new Date(i.updated)>2592e6};
+function cols(){const c={...COL},n={};D.items.forEach(i=>i.tags.forEach(t=>n[t]=(n[t]||0)+1));Object.entries(n).filter(e=>e[1]>=2).sort((a,b)=>b[1]-a[1]).slice(0,5).forEach(([t])=>c['#'+t]=i=>i.tags.includes(t));return c}
+function search(q){const tk=q.toLowerCase().split(/\s+/).filter(Boolean).slice(0,6),pr=D.projects.filter(p=>tk.every(t=>p.name.toLowerCase().includes(t)));
+const it=[];for(const i of D.items){const ti=i.title.toLowerCase(),bo=i.body.toLowerCase(),tg=i.tags.join(' '),pn=pname(i.project).toLowerCase();let sc=0,ok=1;for(const t of tk){let s=0;if(ti.includes(t))s+=4;if(tg.includes(t))s+=3;if(pn.includes(t))s+=2;if(bo.includes(t)||i.url.toLowerCase().includes(t))s+=1;if(!s){ok=0;break}sc+=s}if(ok)it.push({i,sc})}
+it.sort((a,b)=>b.sc-a.sc||b.i.updated.localeCompare(a.i.updated));return{pr,it:it.slice(0,60).map(x=>x.i)}}
+const nav=[['home','Home'],['tasks','Tasks'],['notes','Notes'],['browse','Browse'],['time','Timeline']];
+function render(){const q=$('#q').value.trim(),m=$('#m');$('#nv').innerHTML=nav.map(([k,l])=>`<button data-a="tab" data-i="${k}" ${S.tab===k&&!q?'aria-current="page"':''}>${l}</button>`).join('');
+$('#qh').textContent=q?'Searching. Press Enter to run a command (task, note, idea, focus 25).':'';
+if(q){const r=search(q);let h='<h1>Results</h1>';if(!r.pr.length&&!r.it.length)h+='<p class="mu">Nothing matches. Press Enter to save it as a note, or start with task, idea or focus 25.</p>';
+if(r.pr.length)h+=sec('Projects','<ul>'+r.pr.map(p=>`<li class="row"><button class="rm" data-a="proj" data-i="${p.id}"><b>${E(p.name)}</b></button></li>`).join('')+'</ul>');
+[['task','Tasks'],['note','Notes'],['link','Saved'],['idea','Ideas']].forEach(([t,l])=>h+=sec(l,list(r.it.filter(i=>i.type===t))));m.innerHTML=h;return}
+m.innerHTML=({home,tasks,notes,browse,time}[S.tab])()+foot()}
+const foot=()=>`<footer style="margin-top:44px;padding-top:14px;border-top:1px solid var(--ln)" class="mu"><a href="privacy.html">Privacy</a> &nbsp; <a href="terms.html">Terms</a><small style="margin-top:6px">&copy; ${new Date().getFullYear()} Nexus. Your data stays on this device.</small></footer>`;
+function empty(t,b){return`<div style="margin-top:28px"><b style="font-size:21px">${E(t)}</b><p class="mu">${E(b)}</p></div>`}
+function home(){const h=new Date().getHours(),td=dk(),T=D.items.filter(i=>i.type==='task'&&!i.done);const rk=t=>t.due&&t.due<td?0:t.due===td?1:t.promise?2:t.due?3:4;
+T.sort((a,b)=>rk(a)-rk(b)||(a.due||'9').localeCompare(b.due||'9')||a.created.localeCompare(b.created));const n=T.length,st=n?S.skip%n:0,O=n?[...T.slice(st),...T.slice(0,st)]:[],nt=O[0];
+let o=`<h1>${h<5?'Still up':h<12?'Good morning':h<17?'Good afternoon':h<22?'Good evening':'Late night'}</h1><p class="mu" style="margin:0">${new Date().toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'})}</p>`;
+o+='<section class="now"><p>Now</p>'+(nt?`<button class="rm" style="padding:0;color:inherit" data-a="open" data-i="${nt.id}"><span class="t ${nt.title.length>60?'s':''}" style="display:block">${E(nt.title)}</span></button><p>${E([pname(nt.project),dueL(nt.due),nt.promise?'you promised this':''].filter(Boolean).join(', '))}</p><div class="row2"><button class="btn l" data-a="done" data-i="${nt.id}">Mark done</button><button class="btn" data-a="focus" data-i="${nt.id}">Focus 25 min</button>${n>1?'<button class="btn" data-a="skip">Skip</button>':''}</div>`:`<p class="t s">${D.items.length?'Nothing to do right now':'Start with one thing'}</p><p>Tap Capture. Words like tomorrow, #tags and @project sort it for you.</p>`)+'</section>';
+o+=sec('Then',list(O.slice(1,3)));const sh=new Set(O.slice(0,3).map(x=>x.id));o+=sec('Loose ends',list(T.filter(t=>t.promise&&!sh.has(t.id)).slice(0,3)));
+const old=D.items.filter(i=>i.type!=='task'&&Date.now()-new Date(i.updated)>6048e5),rec=D.items.filter(i=>Date.now()-new Date(i.updated)<2592e5);let bs=null;
+for(const c of old)for(const r of rec){const x=rel(c,r);if(x.s>=2&&(!bs||x.s>bs.s))bs={i:c,s:x.s,r:x.r}}
+if(!bs&&old.length){const p=old[Math.floor(Date.now()/864e5)%old.length];bs={i:p,r:'Saved '+ago(p.created)}}
+if(bs)o+=sec('Worth another look',`<button class="card" data-a="open" data-i="${bs.i.id}"><b>${E(bs.i.title||'Untitled')}</b><small>${E(bs.r)}</small></button>`);
+const L=D.log.filter(l=>l.t.slice(0,10)===new Date().toISOString().slice(0,10)),dn=L.filter(l=>l.k==='done').length,cr=L.filter(l=>l.k==='created').length;
+const wk=D.log.filter(l=>Date.now()-new Date(l.t)<6048e5);
+if(D.items.length)o+=sec('Your day',`<p class="prose" style="margin:0">${dn||cr?`Today: ${dn} done, ${cr} captured.`:'Nothing yet today.'} This week: ${wk.filter(l=>l.k==='done').length} finished, ${wk.filter(l=>l.k==='created').length} captured.</p>`);
+return o+`<p style="margin-top:36px"><button class="btn" data-a="settings">Settings and backup</button></p>`}
+function tasks(){const td=dk(),T=D.items.filter(i=>i.type==='task'),op=T.filter(t=>!t.done),by=(a,b)=>(a.due||'').localeCompare(b.due||'')||a.created.localeCompare(b.created);
+let o='<h1>Tasks</h1><form id="qa" style="display:flex;gap:8px;margin-top:10px"><input name="t" maxlength="400" aria-label="New task" placeholder="Add a task and press Enter" autocomplete="off"><button class="btn p">Add</button></form>';
+if(!T.length)return o+empty('No tasks yet','Add one above. Today and tomorrow set the due date for you.');
+o+=sec('Today',list(op.filter(t=>t.due&&t.due<=td).sort(by)))+sec('Coming up',list(op.filter(t=>t.due&&t.due>td).sort(by)))+sec('No date',list(op.filter(t=>!t.due).sort(by)));
+const dn=T.filter(t=>t.done).sort((a,b)=>(b.doneAt||'').localeCompare(a.doneAt||'')).slice(0,20);if(dn.length)o+=`<details style="margin-top:28px"><summary><b>Done (${dn.length})</b></summary>${list(dn)}</details>`;return o}
+function notes(){const f=S.nf||'all',A=D.items.filter(i=>i.type!=='task').sort((a,b)=>b.updated.localeCompare(a.updated));
+let o='<h1>Notes</h1><div class="chips">'+[['all','All'],['note','Notes'],['link','Saved'],['idea','Ideas']].map(([k,l])=>`<button class="chip" aria-pressed="${f===k}" data-a="nf" data-i="${k}">${l}</button>`).join('')+'</div>';
+if(!A.length)return o+empty('Nothing saved yet','Capture a note, link or idea and it shows up here.');return o+list(A.filter(i=>f==='all'||i.type===f))}
+function browse(){if(S.pj){const p=D.projects.find(x=>x.id===S.pj);if(!p){S.pj=null;return browse()}const A=D.items.filter(i=>i.project===p.id);
+return`<p><button class="btn" data-a="bk">Back</button></p><h1>${E(p.name)}</h1><div class="row2"><button class="btn p" data-a="cap" data-i="${p.id}">Add to this project</button></div>`+(A.length?sec('Open tasks',list(A.filter(i=>i.type==='task'&&!i.done)))+sec('Notes and saved',list(A.filter(i=>i.type!=='task')))+sec('Done',list(A.filter(i=>i.done))):empty('This project is empty','Capture something and pick this project, or write @'+p.name.split(' ')[0]+' in the text.'))+`<div class="row2" style="margin-top:32px"><button class="btn" data-a="ren" data-i="${p.id}">Rename</button><button class="btn d" data-a="delp" data-i="${p.id}">Delete project</button></div>`}
+const C=cols();if(S.col&&C[S.col])return`<p><button class="btn" data-a="bk">Back</button></p><h1>${E(S.col)}</h1>`+(list(D.items.filter(C[S.col]))||'<p class="mu">Nothing here right now.</p>');S.col=null;
+return`<div style="display:flex;justify-content:space-between;align-items:center"><h1>Browse</h1><button class="btn p" data-a="newp">New project</button></div>`+sec('Projects',D.projects.length?'<ul>'+D.projects.map(p=>{const A=D.items.filter(i=>i.project===p.id);return`<li class="row"><button class="rm" data-a="proj" data-i="${p.id}"><b>${E(p.name)}</b><small>${pl(A.filter(i=>i.type==='task'&&!i.done).length,'open task')}, ${pl(A.filter(i=>i.type!=='task').length,'note')}</small></button></li>`}).join('')+'</ul>':'<p class="mu">A project gathers tasks, notes and links for one piece of work. Create one, then mention its name or type @name when you capture.</p>')+sec('Smart collections','<p class="mu" style="margin:0">Built automatically from what you save.</p><ul>'+Object.keys(C).map(k=>`<li class="row"><button class="rm" data-a="col" data-i="${E(k)}"><b>${E(k)}</b><small>${pl(D.items.filter(C[k]).length,'item')}</small></button></li>`).join('')+'</ul>')}
+function time(){const L=[...D.log].reverse();let o='<h1>Timeline</h1><p class="mu" style="margin:0">Everything you did in Nexus, newest first.</p>';if(!L.length)return o+empty('Nothing yet','Your activity appears here as you capture and finish things.');let last='';
+for(const l of L.slice(0,150)){const d=l.t.slice(0,10),loc=dk(new Date(l.t));if(loc!==last){last=loc;o+=`<h2>${loc===dk()?'Today':loc===addD(-1)?'Yesterday':new Date(l.t).toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'short'})}</h2>`}
+const v={created:'Added',updated:'Edited',done:'Finished'}[l.k];o+=`<button class="card" style="border:0;border-bottom:1px solid var(--ln);border-radius:0;background:none;margin:0;padding:10px 0" ${get(l.id)?`data-a="open" data-i="${l.id}"`:'disabled'}><b>${E(l.ti)}</b><small>${new Date(l.t).toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'})}, ${v} ${l.ty}</small></button>`}return o}
+const dlg=$('#dlg');function sheet(h){dlg.innerHTML=h;if(!dlg.open)dlg.showModal()}
+dlg.addEventListener('close',()=>{dlg.innerHTML='';render()});dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+function capture(pj){let ty='auto';sheet(`<h2 style="margin:0">Capture</h2><textarea id="ct" rows="4" maxlength="5000" aria-label="What do you want to save?" placeholder="Type or paste anything" style="margin-top:12px"></textarea><small id="ch" role="status"></small><div class="chips" id="cc">${['auto','note','task','link','idea'].map(t=>`<button class="chip" data-t="${t}" aria-pressed="${t==='auto'}">${t[0].toUpperCase()+t.slice(1)}</button>`).join('')}</div><label><span>Project</span><select id="cp"><option value="">No project</option>${D.projects.map(p=>`<option value="${p.id}" ${p.id===pj?'selected':''}>${E(p.name)}</option>`).join('')}</select></label><div class="row2"><button class="btn p" id="cs" style="flex:1">Save</button><button class="btn" id="cx">Cancel</button></div>`);
+const ct=$('#ct'),hint=()=>{const p=parse(ct.value,ty==='auto'?null:ty);$('#ch').textContent=p?`Saving as ${{note:'a note',task:'a task',link:'a saved link',idea:'an idea'}[p.type]}${p.project||$('#cp').value?' in '+pname(p.project||$('#cp').value):''}${p.due?', '+dueL(p.due):''}${p.tags.length?', tagged '+p.tags.map(t=>'#'+t).join(' '):''}.`:'Use #tags and @project. Words like tomorrow set a due date.'};
+ct.oninput=hint;$('#cp').onchange=hint;$('#cc').onclick=e=>{const b=e.target.closest('[data-t]');if(!b)return;ty=b.dataset.t;[...$('#cc').children].forEach(c=>c.setAttribute('aria-pressed',c===b));hint()};$('#cx').onclick=()=>dlg.close();
+$('#cs').onclick=()=>{const p=parse(ct.value,ty==='auto'?null:ty);if(!p){$('#ch').textContent='Type something to save.';return}if($('#cp').value)p.project=$('#cp').value;const it=addItem(p);if(!it)return;dlg.close();toast('Saved as '+it.type,'Undo',()=>{D.items=D.items.filter(x=>x.id!==it.id);D.log=D.log.filter(l=>!(l.id===it.id&&l.k==='created'));save();render()})};hint();ct.focus()}
+function edit(i){const it=get(i);if(!it)return;const R=related(it);
+sheet(`<div style="display:flex;justify-content:space-between;align-items:center"><h2 style="margin:0">Edit</h2><button class="btn" id="ex">Close</button></div><div class="chips" id="ty">${['note','task','link','idea'].map(t=>`<button class="chip" data-t="${t}" aria-pressed="${it.type===t}">${t[0].toUpperCase()+t.slice(1)}</button>`).join('')}</div>
+<label><span>Title</span><input id="et" maxlength="200" value="${E(it.title)}"></label>${it.type==='link'||it.url?`<label><span>Web address</span><input id="eu" inputmode="url" maxlength="2000" value="${E(it.url)}"></label>${it.url?`<p><a href="${E(it.url)}" target="_blank" rel="noopener noreferrer">Open ${E(dom(it.url))}</a></p>`:''}`:''}
+<label><span>Notes</span><textarea id="eb" rows="5" maxlength="20000">${E(it.body)}</textarea></label>
+${it.type==='task'?`<label><span>Due date</span><input id="ed" type="date" value="${it.due||''}"></label><label><input type="checkbox" id="ek" ${it.done?'checked':''}>Done</label><label><input type="checkbox" id="ep" ${it.promise?'checked':''}>I promised this to someone</label>`:''}
+<label><span>Project</span><select id="es"><option value="">No project</option>${D.projects.map(p=>`<option value="${p.id}" ${p.id===it.project?'selected':''}>${E(p.name)}</option>`).join('')}</select></label><label><span>Tags, separated by commas</span><input id="eg" maxlength="200" value="${E(it.tags.join(', '))}"></label>
+${R.length?`<h2>Connected</h2><small>Shares a project, tag or topic with this.</small><ul>${R.map(x=>`<li class="row"><button class="rm" data-a="open" data-i="${x.o.id}"><b>${E(x.o.title||'Untitled')}</b><small>${E(x.r)}</small></button></li>`).join('')}</ul>`:''}
+<small style="margin-top:14px">Added ${ago(it.created)}, edited ${ago(it.updated)}.</small><div class="row2"><button class="btn d" id="edl">Delete</button></div>`);
+const g=s=>$(s),sv=()=>{const p={title:g('#et').value.trim().slice(0,200),body:g('#eb').value,project:g('#es').value||null,tags:[...new Set(g('#eg').value.toLowerCase().split(/[,\s]+/).map(t=>t.replace(/^#+/,'').replace(/[^\w-]/g,'')).filter(Boolean))].slice(0,10)};
+if(g('#eu'))p.url=safeUrl(g('#eu').value);if(g('#ed'))p.due=g('#ed').value||null;if(g('#ek'))p.done=g('#ek').checked;if(g('#ep'))p.promise=g('#ep').checked;upd(i,p)};
+dlg.querySelectorAll('input,textarea,select').forEach(e=>e.onchange=sv);$('#ex').onclick=()=>{sv();dlg.close()};
+$('#ty').onclick=e=>{const b=e.target.closest('[data-t]');if(b){sv();const p={type:b.dataset.t};if(p.type!=='task'){p.due=null;p.promise=false;p.done=false}upd(i,p);edit(i)}};
+$('#edl').onclick=()=>{const c={...it};D.items=D.items.filter(x=>x.id!==i);logA('deleted',c);D.log.pop();save();dlg.close();toast('Deleted','Undo',()=>{D.items.push(c);save();render()})}}
+function settings(){const t=th();sheet(`<div style="display:flex;justify-content:space-between"><h2 style="margin:0">Settings</h2><button class="btn" id="sx">Close</button></div><h2>Theme</h2><div class="chips" id="th">${[['system','Match phone'],['light','Light'],['dark','Dark']].map(([k,l])=>`<button class="chip" data-t="${k}" aria-pressed="${t===k}">${l}</button>`).join('')}</div>
+<h2>Backup</h2><p class="mu">Your data lives only in this browser. Export a file now and then.</p><div class="row2"><button class="btn p" id="xp">Export backup</button><button class="btn" id="im">Restore from file</button></div><input type="file" id="fi" accept=".json,application/json" hidden>
+<h2>Storage</h2><p class="mu">${D.items.length} items, ${D.projects.length} projects, about ${Math.max(1,Math.round(JSON.stringify(D).length/1024))} KB of roughly 5 MB.</p><h2>Delete everything</h2><div class="row2"><button class="btn d" id="wp">Delete all data</button></div>`);
+$('#sx').onclick=()=>dlg.close();$('#th').onclick=e=>{const b=e.target.closest('[data-t]');if(b){try{localStorage.setItem(TH,b.dataset.t)}catch(x){}applyTh();settings()}};
+$('#xp').onclick=()=>{const u=URL.createObjectURL(new Blob([JSON.stringify({app:'nexus',v:2,...D},null,1)],{type:'application/json'})),a=document.createElement('a');a.href=u;a.download='nexus-backup-'+dk()+'.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),2000);toast('Backup exported')};
+$('#im').onclick=()=>$('#fi').click();$('#fi').onchange=async e=>{const f=e.target.files[0];if(!f)return;if(f.size>5e6){toast('File too large for a Nexus backup.');return}try{const r=JSON.parse(await f.text());if(r.app!=='nexus'||!Array.isArray(r.items))throw 0;
+if(!confirm('Restoring replaces everything now in Nexus. Continue?'))return;const ok=s=>typeof s==='string'?s:'';D={items:r.items.filter(x=>x&&typeof x==='object').slice(0,5000).map(x=>({id:ok(x.id)||uid(),type:['note','task','link','idea'].includes(x.type)?x.type:'note',title:ok(x.title).slice(0,200),body:ok(x.body).slice(0,20000),url:safeUrl(x.url),project:ok(x.project||x.projectId)||null,tags:Array.isArray(x.tags)?x.tags.map(String).slice(0,10):[],done:x.done===true,doneAt:x.doneAt||null,due:/^\d{4}-\d{2}-\d{2}$/.test(x.due)?x.due:null,promise:x.promise===true,created:x.created||now(),updated:x.updated||x.created||now()})),projects:(r.projects||[]).filter(p=>p&&p.name).slice(0,100).map(p=>({id:ok(p.id)||uid(),name:ok(p.name).slice(0,60)})),log:Array.isArray(r.log)?r.log.filter(l=>l&&l.t&&l.k).slice(-400):[]};save();dlg.close();toast('Backup restored')}catch(x){toast('That is not a Nexus backup file.')}};
+$('#wp').onclick=()=>{if(confirm('Delete every item and project on this device? This cannot be undone.')){D={items:[],projects:[],log:[]};save();dlg.close();toast('Everything deleted')}}}
+function ask(title,val,fn){sheet(`<h2 style="margin:0">${E(title)}</h2><label><span>Project name</span><input id="an" maxlength="60" value="${E(val||'')}"></label><p id="ae" class="late"></p><div class="row2"><button class="btn p" id="ao" style="flex:1">Save</button><button class="btn" id="ac">Cancel</button></div>`);$('#ac').onclick=()=>dlg.close();$('#an').focus();
+$('#ao').onclick=()=>{const n=$('#an').value.replace(/\s+/g,' ').trim();if(!n){$('#ae').textContent='Give the project a name.';return}if(D.projects.some(p=>p.name.toLowerCase()===n.toLowerCase()&&p.name!==val)){$('#ae').textContent='You already have a project with that name.';return}fn(n);dlg.close()}}
+let F=null;const fmt=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+function focus(i,min=25){const it=get(i);if(!it)return;F={id:i,left:min*60,run:1};fx();clearInterval(F.h);F.h=setInterval(()=>{if(!F.run)return;F.left--;if(F.left<=0){clearInterval(F.h);F.left=0;try{navigator.vibrate&&navigator.vibrate([200,100,200])}catch(e){}}fx()},1e3)}
+function fx(){const o=$('#fx');if(!F){o.style.display='none';return}const it=get(F.id);o.style.display='flex';
+o.innerHTML=`<p>Focus</p><div class="tm" aria-live="off">${fmt(F.left)}</div><p style="font-size:24px;font-weight:600;margin:14px 0 4px">${E(it?it.title:'')}</p><p>${F.left?'':'Time is up.'}${it&&it.project?E(pname(it.project)):''}</p><div class="row2" style="justify-content:center"><button class="btn" data-a="fp">${F.run?'Pause':'Resume'}</button>${it&&it.type==='task'?'<button class="btn l" data-a="fd">Mark done</button>':''}<button class="btn" data-a="fe">End</button></div>`}
+const stopF=()=>{if(F)clearInterval(F.h);F=null;fx()};
+const A={tab:i=>{S.tab=i;S.pj=S.col=null;$('#q').value='';render();scrollTo(0,0)},open:i=>edit(i),cap:i=>capture(i),settings,skip:()=>{S.skip++;render()},nf:i=>{S.nf=i;render()},proj:i=>{S.tab='browse';S.pj=i;$('#q').value='';render();scrollTo(0,0)},col:i=>{S.col=i;render();scrollTo(0,0)},bk:()=>{S.pj=S.col=null;render()},
+done:i=>{const it=get(i);if(!it)return;const d=!it.done;upd(i,{done:d});S.skip=0;render();if(d)toast('Marked done','Undo',()=>{upd(i,{done:false});render()})},focus:i=>focus(i),fp:()=>{F.run=!F.run;fx()},fe:stopF,fd:()=>{const i=F.id;stopF();A.done(i)},
+newp:()=>ask('New project','',n=>{const p={id:uid(),name:n};D.projects.push(p);save();toast('Project created');A.proj(p.id)}),ren:i=>{const p=D.projects.find(x=>x.id===i);ask('Rename project',p.name,n=>{p.name=n;save();toast('Name saved')})},
+delp:i=>{const p=D.projects.find(x=>x.id===i);if(confirm('Delete '+p.name+'? Its items stay in Nexus without a project.')){D.projects=D.projects.filter(x=>x.id!==i);D.items.forEach(x=>{if(x.project===i)x.project=null});S.pj=null;save();render();toast('Project deleted')}}};
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b&&A[b.dataset.a])A[b.dataset.a](b.dataset.i)});
+document.addEventListener('submit',e=>{if(e.target.id==='qa'){e.preventDefault();const f=e.target.t,p=parse(f.value,'task');if(!p||!p.title){return}addItem(p);render();$('#m input')&&$('#m input').focus()}});
+$('#q').addEventListener('input',render);
+$('#q').addEventListener('keydown',e=>{if(e.key!=='Enter')return;const v=e.target.value.trim();if(!v)return;
+const f=v.match(/^focus\s*(\d{1,3})?\b\s*(.*)$/i);if(f){const T=D.items.filter(i=>i.type==='task'&&!i.done);const hit=f[2]?search(f[2]).it.find(i=>i.type==='task'&&!i.done):T[0];if(hit){e.target.value='';render();focus(hit.id,+f[1]||25)}else toast('No open task to focus on. Add one first.');return}
+const pv=parse(v),r=search(v);if(pv&&(/^(task|todo|idea|note|remind)\b/i.test(v)||pv.url||(!r.it.length&&!r.pr.length))){const it=addItem(pv);if(it){e.target.value='';render();toast('Saved as '+it.type)}}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&F)stopF()});
+render();
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+</script></body></html>
