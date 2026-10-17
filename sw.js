@@ -1,5 +1,5 @@
-const VERSION='nexus-v3-0';
-const SHELL=['./','index.html','patch.js','manifest.webmanifest','privacy.html','terms.html','404.html','icons/icon-192.png'];
+const VERSION='nexus-v3-1';
+const SHELL=['./','index.html','patch.js','theme.css','manifest.webmanifest','privacy.html','terms.html','404.html','icons/icon-192.png','icons/icon-512.png','icons/icon-maskable-512.png'];
 
 self.addEventListener('install',e=>{
   e.waitUntil(caches.open(VERSION).then(c=>Promise.all(SHELL.map(u=>c.add(u).catch(()=>{})))).then(()=>self.skipWaiting()));
