@@ -1,0 +1,15 @@
+/* Nexus "Ember" theme. Link after the inline <style> so it overrides the blue. */
+:root{--bg:#F4F0E8;--s:#FBF8F2;--ink:#1B1712;--mu:#645C50;--ln:#D8D0C2;--ac:#C2410C;--on:#FFF7F0;--dg:#9F1239}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13110F;--s:#1D1A16;--ink:#F2EDE4;--mu:#A39A8B;--ln:#322D26;--ac:#FF9A5C;--on:#1E0F05;--dg:#FF8FA3}}
+:root[data-theme="dark"]{--bg:#13110F;--s:#1D1A16;--ink:#F2EDE4;--mu:#A39A8B;--ln:#322D26;--ac:#FF9A5C;--on:#1E0F05;--dg:#FF8FA3}
+h1{font-weight:700;letter-spacing:-.035em}
+#m>h2{font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mu);font-weight:700;margin-top:34px}
+header input{border-radius:99px;padding-left:20px}
+.now{border-radius:28px;background-color:var(--ac);background-image:linear-gradient(155deg,color-mix(in srgb,var(--ac) 92%,#fff),var(--ac) 55%,color-mix(in srgb,var(--ac) 84%,#000));box-shadow:0 16px 34px -18px var(--ac)}
+.btn,.card,input,select,textarea{border-radius:14px}
+.chip{border-radius:99px}
+.btn.p,.fab{box-shadow:0 10px 22px -12px var(--ac)}
+.fab{border-radius:18px}
+.card{box-shadow:0 1px 0 var(--ln)}
+nav{background:color-mix(in srgb,var(--bg) 86%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+dialog{border-radius:28px 28px 0 0}
